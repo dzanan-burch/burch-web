@@ -1,0 +1,37 @@
+<md-dialog aria-label="New Muscle Group"> 
+        <md-toolbar>
+            <div class="md-toolbar-tools">
+                <h2 ng-if="!muscle._id">New Muscle Group</h2>
+                <h2 ng-if="muscle._id">Edit Muscle Group</h2>
+                <span flex></span>
+                <md-button class="md-icon-button" ng-click="cancel()">
+                <md-icon md-svg-src="assets/icons/ic_close_24px.svg" aria-label="Close dialog"></md-icon>
+                </md-button>
+            </div>
+        </md-toolbar>
+        <md-content class="md-padding" style="width:500px;"> 
+            <form name="muscleForm">
+                <md-input-container class="md-block"> 
+                    <label>Muscle Name</label>
+                    <input name="name" ng-model="muscle.name" required> 
+                    <div ng-messages="muscleForm.name.$error" role="alert" multiple="">
+                        <div ng-message="required" class="my-message">Please give muscle name.</div>
+                    </div>
+                </md-input-container>
+                <md-input-container class="md-block"> 
+                    <label>Description</label>
+                    <input name="description" ng-model="muscle.description"> 
+                    <div ng-messages="muscleForm.description.$error" role="alert" multiple="">
+                        <div ng-message="required" class="my-message">Please give muscle description.</div>
+                    </div>
+                </md-input-container>
+            </form> 
+        </md-content> 
+        <md-dialog-actions>
+            <span flex></span> 
+            <md-button ng-click="cancel()"> Cancel </md-button> 
+            <md-button ng-if="!muscle._id" ng-disabled="!muscleForm.$valid" ng-click="addMuscle(muscle)" class="md-primary"> Save </md-button> 
+            <md-button ng-if="muscle._id" ng-click="deleteMuscle(exercise)" class="md-primary"> Delete </md-button> 
+            <md-button ng-if="muscle._id" ng-disabled="!muscleForm.$valid" ng-click="updateMuscle(exercise)" class="md-primary"> Update </md-button>
+        </md-dialog-actions>
+    </md-dialog>

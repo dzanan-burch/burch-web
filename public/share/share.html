@@ -1,0 +1,34 @@
+<md-toolbar class="md-padding">
+    <div class="md-toolbar-tools">
+        <h2>Workout <span ng-if="name"> | {{name}}</span><span ng-if="date"> | {{date | date:'longDate'}}</span> </h2>
+        <span flex></span>
+    </div>
+</md-toolbar>
+<md-content class="md-padding">
+    <md-card ng-repeat="item in workoutList">
+        <md-card-title>
+            <md-card-title-text>
+                <span class="md-headline">{{item.exercise}}</span>
+                <span class="md-subhead">{{item.date | date:'longDate'}}</span>
+            </md-card-title-text>
+        </md-card-title>
+        <md-card-content>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <td width="30">#</td>
+                        <td width="100">Weight</td>
+                        <td width="100">Reps</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="val in item.workout">
+                        <td>{{$index + 1}}</td>
+                        <td>{{val.weight}}</td>
+                        <td>{{val.reps}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </md-card-content>
+    </md-card>
+</md-content>

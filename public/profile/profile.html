@@ -1,0 +1,55 @@
+<div ng-cloak>
+    <md-toolbar>
+        <div class="md-toolbar-tools">
+            <h2>Update Profile</h2>
+            <span flex></span>
+            <md-button class="md-button" ng-click="back()">
+                Home
+            </md-button>
+        </div>
+    </md-toolbar>
+    <md-content class="md-padding"> 
+        <form name="userForm">
+            <div layout layout-sm="row"> 
+                <md-input-container flex> 
+                    <label>User Name</label>
+                    <input name="id" ng-model="user.username" required disabled> 
+                </md-input-container>
+            </div>
+            <div layout layout-sm="row"> 
+                <md-input-container flex> 
+                    <label>Name</label>
+                    <input name="name" ng-model="user.name" required> 
+                    <div ng-messages="userForm.name.$error" role="alert" multiple="">
+                        <div ng-message="required" class="my-message">Please give your full name.</div>
+                    </div>
+                </md-input-container>
+            </div>
+            <div layout layout-sm="row"> 
+                <md-input-container flex> 
+                    <md-radio-group ng-model="user.gender">
+                        <md-radio-button value="Male" class="md-primary">Male</md-radio-button>
+                        <md-radio-button value="Female" class="md-primary">Female</md-radio-button>
+                    </md-radio-group> 
+                    <div ng-messages="userForm.gender.$error" role="alert" multiple="">
+                        <div ng-message="required" class="my-message">Please select your gender</div>
+                    </div>
+                </md-input-container>
+            </div>
+            <div layout layout-sm="row"> 
+                <md-input-container flex> 
+                    <label>Date of Birth</label>
+                    <md-datepicker name="dob" ng-model="user.dob" md-placeholder="Enter your date of birth"></md-datepicker> 
+                    <div ng-messages="userForm.dob.$error" role="alert" multiple="">
+                        <div ng-message="required" class="my-message">Please enter your date of birth</div>
+                    </div>
+                </md-input-container>
+            </div>
+        </form> 
+    </md-content> 
+    <md-dialog-actions>
+        <span flex></span> 
+        <md-button ng-click="cancel()"> Cancel </md-button> 
+        <md-button ng-disabled="!userForm.$valid" ng-click="updateProfile()" class="md-primary"> Save </md-button> 
+    </md-dialog-actions>
+</div>

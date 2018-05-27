@@ -1,0 +1,36 @@
+<md-dialog aria-label="Exercise"> 
+    <md-toolbar>
+        <div class="md-toolbar-tools">
+            <h2 ng-if="!exercise._id">New Exercise</h2>
+            <h2 ng-if="exercise._id">Edit Exercise</h2>
+            <span flex></span>
+            <md-button class="md-icon-button" ng-click="cancel()">
+            <md-icon md-svg-src="assets/icons/ic_close_24px.svg" aria-label="Close dialog"></md-icon>
+            </md-button>
+        </div>
+    </md-toolbar>
+    <md-content class="md-padding" style="width:500px;"> 
+        <form name="exerciseForm">
+            <md-input-container class="md-block"> 
+                <label>Exercise Name</label>
+                <input name="name" ng-model="exercise.name" required> 
+                <div ng-messages="exerciseForm.name.$error" role="alert" multiple="">
+                    <div ng-message="required" class="my-message">Please enter exercise name.</div>
+                </div>
+            </md-input-container>
+            <md-input-container class="md-block"> 
+                <label>Muscle Group</label>
+                <md-select placeholder="Select Muscle Group" ng-model="exerciseMuscle" style="min-width: 200px;">
+                    <md-option ng-value="item.name" ng-repeat="item in muscleList">{{item.name}}</md-option>
+                </md-select>
+            </md-input-container>
+        </form> 
+    </md-content> 
+    <md-dialog-actions>
+        <span flex></span> 
+        <md-button ng-click="cancel()"> Cancel </md-button> 
+        <md-button ng-if="!exercise._id" ng-disabled="!exerciseForm.$valid" ng-click="addExercise(exercise)" class="md-primary"> Save </md-button>
+        <md-button ng-if="exercise._id" ng-click="deleteExercise(exercise)" class="md-primary"> Delete </md-button> 
+        <md-button ng-if="exercise._id" ng-disabled="!exerciseForm.$valid" ng-click="updateExercise(exercise)" class="md-primary"> Update </md-button>  
+    </md-dialog-actions>
+</md-dialog>

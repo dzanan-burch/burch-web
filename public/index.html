@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<title>Fitness Tracker</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" href="/bower_components/angular-material/angular-material.css" /> 
+		<style>
+			.table>tbody>tr>td{
+				padding: 5px;
+				vertical-align: top;
+				border-top:1px solid #ddd;
+			}
+			.table>thead>tr>td{
+				color: #555;
+				padding: 5px;
+				vertical-align: top;
+			}
+		</style>
+	</head>
+	<body ng-controller="MainController" ng-app="exerciseapp">
+		<div ui-view></div>
+		<!-- Third-party Libraries -->
+		<script src="/bower_components/angular/angular.js"></script>
+		<script src="/bower_components/angular-aria/angular-aria.js"></script>
+		<script src="/bower_components/angular-animate/angular-animate.js"></script>
+		<script src="/bower_components/angular-messages/angular-messages.js"></script>
+		<script src="/bower_components/angular-material/angular-material.js"></script>
+		<script src="/bower_components/angular-ui-router/release/angular-ui-router.min.js"></script>
+
+		<!-- Application Code -->
+		<script src="/app.js"></script>
+		<script src="/route.js"></script>
+		<script src="/home/home.controller.js"></script>
+		<script src="/home/muscle.service.js"></script>
+		<script src="/home/exercise.service.js"></script>
+		<script src="/home/workout.service.js"></script>
+		<script src="/login/login.controller.js"></script>
+		<script src="/login/login.service.js"></script>
+		<script src="/register/register.controller.js"></script>
+		<script src="/register/register.service.js"></script>
+		<script src="/profile/profile.controller.js"></script>
+		<script src="/profile/profile.service.js"></script>
+		<script src="/share/share.controller.js"></script>
+		<script src="/share/share.service.js"></script>
+	</body>
+</html>

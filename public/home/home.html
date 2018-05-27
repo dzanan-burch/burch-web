@@ -1,0 +1,112 @@
+<md-sidenav class="md-sidenav-left" md-component-id="left" md-whiteframe="z2">
+    <md-toolbar class="md-theme-indigo">
+        <span flex></span>
+        <div layout="column" class="md-toolbar-tools-bottom inset">
+            <user-avatar></user-avatar>
+            <span>{{name}}</span>
+        </div>
+    </md-toolbar>
+    <md-content layout-margin>
+        <md-list>
+            <md-item>
+                <md-button ng-click="profile()" >
+                    Profile
+                <md-button>
+            </md-item>
+            <md-item>
+                <md-button ng-click="logout()" class="md-accent">
+                    Logout
+                <md-button>
+            </md-item>
+        </md-list>
+    </md-content>
+</md-sidenav>
+<div ng-cloak>
+    <md-toolbar>
+        <div class="md-toolbar-tools">
+            <md-button class="md-icon-button" ng-click="toggleSidenav()" aria-label="Side Menu">
+                <md-icon md-svg-src="assets/icons/menu_black.svg"></md-icon>
+            </md-button>    
+            <h2>
+                Fitness Tracker
+            </h2>
+            <span flex></span>
+        </div>
+    </md-toolbar>
+    <md-tabs md-dynamic-height md-border-bottom>
+        <md-tab label="Exercises" ng-click="currentTab('exercise')">
+            <md-content class="md-padding">
+                <md-input-container class="md-block">
+                    <label>Search</label>
+                    <input name="search" type="text" ng-model="searchExercise">
+                </md-input-container>
+                <md-list flex>
+                    <md-list-item class="md-3-line" ng-repeat="item in exerciseList | filter:searchExercise">
+                        <div class="md-list-item-text" layout="column" ng-click="addNewDialog($event, item)">
+                            <h3>{{item.name}}</h3>
+                            <p>{{item.muscle}}</p>
+                        </div>
+                    </md-list-item>
+                </md-list>
+            </md-content>
+        </md-tab>
+        <md-tab label="Muscles" ng-click="currentTab('muscle')">
+            <md-content class="md-padding">
+                <md-input-container class="md-block">
+                    <label>Search</label>
+                    <input name="search" type="text" ng-model="searchMuscle">
+                </md-input-container>
+                <md-list flex>
+                    <md-list-item class="md-3-line" ng-repeat="item in muscleList | filter:searchMuscle">
+                        <div class="md-list-item-text" layout="column" ng-click="addNewDialog($event, item)">
+                            <h3>{{item.name}}</h3>
+                            <p>{{item.description}}</p>
+                        </div>
+                    </md-list-item>                            
+                </md-list>
+            </md-content>
+        </md-tab>
+        <md-tab label="Workout" ng-click="currentTab('workout')">
+            <md-content class="md-padding">
+                <md-input-container class="md-block"> 
+                    <label>Date</label>
+                    <md-datepicker name="search" ng-change="getWorkout()" ng-model="searchDate" md-placeholder="Enter your date of birth"></md-datepicker> 
+                </md-input-container>
+                <div flex-xs flex-gt-xs="100" layout="column">
+                    <md-card ng-repeat="item in workoutList" ng-click="addNewDialog($event, item)">
+                        <md-card-title>
+                            <md-card-title-text>
+                            <span class="md-headline">{{item.exercise}}</span>
+                            <span class="md-subhead">{{item.date | date:'longDate'}}</span>
+                            </md-card-title-text>
+                        </md-card-title>
+                        <md-card-content>
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <td width="30">#</td>
+                                        <td width="100">Weight</td>
+                                        <td width="100">Reps</td>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr ng-repeat="val in item.workout">
+                                        <td>{{$index + 1}}</td>
+                                        <td>{{val.weight}}</td>
+                                        <td>{{val.reps}}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </md-card-content>
+                    </md-card>
+                </div>
+                <md-button class="md-bottom" aria-label="Share Link" ng-click="getSharelink($event, searchDate)">
+                    Share
+                </md-button>
+            </md-content>
+        </md-tab>
+    </md-tabs>
+    <md-button class="md-fab md-fab-bottom-right" aria-label="Add Exercise" style="position:fixed;" ng-click="addNewDialog($event)">
+        <md-icon md-svg-src="assets/icons/add_black.svg"></md-icon>
+    </md-button>
+</div>

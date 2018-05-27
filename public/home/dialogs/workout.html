@@ -1,0 +1,62 @@
+<md-dialog aria-label="New Workout">
+    <md-toolbar>
+        <div class="md-toolbar-tools">
+            <h2 ng-if="!workout._id">New Workout</h2>
+            <h2 ng-if="workout._id">Edit Workout</h2>
+            <span flex></span>
+            <md-button class="md-icon-button" ng-click="cancel()">
+            <md-icon md-svg-src="assets/icons/ic_close_24px.svg" aria-label="Close dialog"></md-icon>
+            </md-button>
+        </div>
+    </md-toolbar>
+        <md-content class="md-padding" style="width:500px;"> 
+            <form name="workoutForm">
+                <md-input-container class="md-block"> 
+                    <label>Exercise</label>
+                    <md-select placeholder="Select Exercise" ng-model="workoutExercise" style="min-width: 200px;">
+                        <md-option ng-value="item.name" ng-repeat="item in exerciseList">{{item.name}}</md-option>
+                    </md-select>
+                </md-input-container>
+                <div layout-gt-sm="row">
+                    <md-input-container class="md-block"> 
+                        <label>Weight</label>
+                        <input name="weight" ng-model="weight"> 
+                    </md-input-container>
+                    <md-input-container class="md-block"> 
+                        <label>Reps</label>
+                        <input name="reps" ng-model="reps"> 
+                    </md-input-container>
+                    <md-input-container class="md-block">
+                        <md-button ng-disabled="!(weight && reps)" ng-click="add(weight, reps)">Add</md-button>
+                    </md-input-container>
+                </div>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <td width="30">#</td>
+                            <td width="100">Weight</td>
+                            <td width="100">Reps</td>
+                            <td>Action</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="item in weightnreps">
+                            <td>{{$index + 1}}</td>
+                            <td>{{item.weight}}</td>
+                            <td>{{item.reps}}</td>
+                            <td>
+                                <md-button ng-click="clear($index)">Clear</md-button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </form> 
+        </md-content> 
+        <md-dialog-actions>
+            <span flex></span> 
+            <md-button ng-click="cancel()"> Cancel </md-button> 
+            <md-button ng-if="workout._id" ng-click="deleteWorkout(workout)" class="md-primary"> Delete </md-button> 
+            <md-button ng-if="workout._id" ng-disabled="!(workoutExercise && weightnreps.length>0)" ng-click="updateWorkout(workout)" class="md-primary"> Update </md-button> 
+            <md-button ng-if="!workout._id" ng-disabled="!(workoutExercise && weightnreps.length>0)" ng-click="addWorkout(workout)" class="md-primary"> Save </md-button> 
+        </md-dialog-actions>
+    </md-dialog>

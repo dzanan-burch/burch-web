@@ -1,0 +1,37 @@
+<div layout="column" flex layout-fill ng-cloak style="text-align:center;">
+    <md-content layout-align="space-around" layout-padding="layout-padding" ng-cloak="ng-cloak">
+        <md-card flex="flex" flex-gt-sm="50" flex-gt-md="25" style="margin:auto;">
+            <md-toolbar style="text-align:center;">
+                <div class="md-toolbar-tools" style="text-align:center;">
+                    <h2 style="color:white;">
+                        <span>Fitness Tracker</span>
+                    </h2>
+                </div>
+            </md-toolbar>
+            <md-card-content>
+                <form name="loginForm">
+                    <div layout-gt-xs="row">
+                        <md-input-container class="md-block" flex-gt-sm>
+                            <label>User Name</label>
+                            <input name="username" type="text" ng-model="user.id" required>
+                            <div ng-messages="loginForm.username.$error" role="alert" multiple="">
+                                <div ng-message="required" class="my-message">Please enter your user id.</div>
+                            </div>
+                        </md-input-container>
+                    </div>
+                    <div layout-gt-xs="row">
+                        <md-input-container class="md-block" flex-gt-sm>
+                            <label>Password</label>
+                            <input name="password" type="password" ng-model="user.password" required>
+                            <div ng-messages="loginForm.password.$error" role="alert" multiple="">
+                                <div ng-message="required" class="my-message">Please enter your password.</div>
+                            </div>
+                        </md-input-container>
+                    </div>
+                    <md-button type="submit" ng-disabled="!loginForm.$valid" ng-click="submit()" class="md-raised md-primary">&nbsp Login &nbsp</md-button>
+                </form>
+                <a ui-sref="register" class="md-raised md-secondary" style="text-decoration: none;color: #34C6D9;">&nbsp Register &nbsp</a>
+            </md-card-content>
+        </md-card>
+    </md-content>
+</div>
